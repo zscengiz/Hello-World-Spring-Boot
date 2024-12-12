@@ -13,7 +13,7 @@ public class HelloWorldController {
     }
 
     @PostMapping("/message")
-    public String postGreeting(@RequestBody String name) {
+    public String postGreeting(@RequestBody(required = false) String name) {
         if (name == null || name.trim().isEmpty()) {
             throw new BadRequestException("Lütfen bir isim yazınız.");
         }
