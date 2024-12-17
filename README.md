@@ -2,25 +2,23 @@
 
 ## Screenshots
 
-### Hello World Application Screenshot
-![Hello World Screenshot](screenshots/helloWorld.png)
+### Login Page
+![Login Page](screenshots/task2/userName_Password.png)
 
-### GET Request Screenshot
-![GET Request Screenshot](screenshots/get.png)
+### Successful Login
+![Successful Login](screenshots/task2/message.png)
 
-### POST Request Screenshots
-#### POST Request with Input
-![POST Request with Input](screenshots/post2.png)
+### Failed Login
+![Failed Login](screenshots/task2/invalidPassword.png)
 
-#### POST Request Error
-![POST Request Error](screenshots/post1.png)
+#### Get Request 
+![Get Request](screenshots/task2/postmanGet.png)
 
-### Swagger UI Screenshots
-#### Swagger UI Overview
-![Swagger UI Overview](screenshots/swagger1.png)
+#### Get Base64
+![Get Base64](screenshots/task2/postmanGetBase64.png)
 
-#### Swagger UI GET Method
-![Swagger UI GET Method](screenshots/swagger2.png)
+#### Post Request
+![Post Request](screenshots/task2/postmanPost.png)
 
-#### Swagger UI POST Method
-![Swagger UI POST Method](screenshots/swagger3.png)
+#### Post Base64
+![Post Base64](screenshots/task2/postmanPostBase64.png)
