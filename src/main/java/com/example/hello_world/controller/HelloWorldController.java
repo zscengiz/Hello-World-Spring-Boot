@@ -18,18 +18,29 @@ public class HelloWorldController {
     }
 
     @PostMapping("/message")
-    public String postGreeting(@RequestBody(required = false) String name) {
-        logger.info("POST /api/message endpoint cagrildi. Gonderilen isim: {}", name);
+    public String postGreeting(
+            @RequestParam(required = false) String name,
+            @RequestBody(required = false) String bodyName) {
 
-        if (name == null || name.trim().isEmpty()) {
-            logger.error("Hatali istek: Isim bos.");
-            throw new BadRequestException("Lütfen bir isim yazınız.");
+        if (bodyName != null && !bodyName.trim().isEmpty()) {
+            logger.info("POST /api/message endpoint cagrildi. Raw Body ile gonderilen isim: {}", bodyName);
+            if ("TÜRKSAT".equalsIgnoreCase(bodyName)) {
+                return "Merhaba TÜRKSAT! (Body)";
+            } else {
+                return "Merhaba " + bodyName + "! (Body)";
+            }
         }
-        if ("TÜRKSAT".equalsIgnoreCase(name)) {
-            logger.info("TÜRKSAT ismi algilandi.");
-            return "Merhaba TÜRKSAT!";
-        } else {
-            return "Merhaba " + name + "!";
+
+        if (name != null && !name.trim().isEmpty()) {
+            logger.info("POST /api/message endpoint cagrildi. URL parametresi ile gonderilen isim: {}", name);
+            if ("TÜRKSAT".equalsIgnoreCase(name)) {
+                return "Merhaba TÜRKSAT! (Param)";
+            } else {
+                return "Merhaba " + name + "! (Param)";
+            }
         }
+
+        logger.error("Hatali istek: Isim yok.");
+        throw new BadRequestException("Lütfen bir isim yazınız.");
     }
 }
