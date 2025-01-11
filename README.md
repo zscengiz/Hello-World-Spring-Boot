@@ -177,7 +177,7 @@ Gelen isteği ilk olarak authentication filter karşılamaktadır.
 <summary><h3 style="display: inline-block">Task 3 - View Details</h3></summary>
 
 # 1. Authentication Filter
-![AuthFilter](screenshots/task2/AuthFilter.png)
+![AuthFilter](screenshots/task3/AuthFilter.png)
 + Kullanıcıdan gelen istek uygulamamıza erişmede AuthenticationFilter istekten kullanıcı adını ve parolayı alır ve bir nesne oluşturulmaktadır. Gelen isteğimizi authentication filter yakalıyor ve authentication managera aktarıyor.
 + Oluşturulan Authentication Nesnesinin kullanılması, filtrenin sonrasında Authentication Manager‘a gelir.
 + Authentication Manager bir interfacedir ve kimlik doğrulama metodu çalıştırılmaktadır. Authentication Manager bir interface olup, Authentication Provider‘a gönderir.
@@ -186,6 +186,7 @@ Gelen isteği ilk olarak authentication filter karşılamaktadır.
 + User Details Service içerisinde loadUserByUsername metodu içerisinde (hesap kiliti mi veya etkin mi, kimlik bilgileri süresi dolup dolmadığı)  gibi bilgilere bakarak karşılık gelen in-memory ya da veritabanı ya da hangi kaynaklardan erişmesi gerekiyorsa erişir ve gelen kullanıcı bilgilerini bulduğu bilgilerini getirir ve eğer doğru kullanıcı bulunduysa ve bulunan kullanıcının nesnesini döndürmektedir. Bu servis içerisinde kullanıcı parolasını doğrulayan Password Encoder bulunmaktadır. Password Encoder kullanıcı parolasının kodlanması ve şifresinin çözülmesi gerektiğini söyleyen arabirimdir.
 
 # 2. JWT
+![jwt2](screenshots/task3/jwt2.png)
 Uygulamamızı yetkisiz kişilerden korumak ve yalnızca yetkili kullanıcıların erişimi için çeşitli yöntemler kullanırız. Bu çözümlerden birisi de token kullanmaktır. JWT ile Authorization işlemi yapabiliriz.Burada Authentication ile karıştırılmamalıyız. 
 >Authentication, kimlik doğrulamadır. 
 
@@ -218,7 +219,7 @@ Algoritma kısmında HS256, HMAC SHA256 ya da RSA gibi birçok farklı algoritma
 **Signature**: Signature bölümünde header, payload ve security key kullanılarak oluşturulan imza yer almaktadır. Bu bölüm üzerinden doğrulama yapılarak veri bütünlüğü garanti altına alınmaktadır.
 
 ### JSON Web Token (JWT) nasıl çalışır?
-![JWT](screenshots/task2/jwt.png)
+![JWT](screenshots/task3/jwt.png)
 1. Uygulamaya giriş için kullanıcı adı ve şifre gerektiğinden; ilk adımda client bu bilgileri browser üzerinden HTTP Post ile sunucuya gönderiyor.
 2. Gönderilen kullanıcı adı ve şifre bilgileri doğrulanıyor. Bilgilerin doğru olması durumunda bir JWT üretim işlemi yapılıyor.
 3. Üretilen JWT bilgisi, isteği yapan client’a iletiliyor. Bu noktadan sonra tekrar kullanıcı adı ve şifre ile doğrulama yapılmasına gerek kalmayacaktır. Token geçerli olduğu sürece yetkilendirme işlemleri için bu token üzerinden gerçekleşecektir.
