@@ -49,6 +49,8 @@ public class SecurityConfig {
     public static final String AUTHENTICATE = "/api/auth/authenticate";
     public static final String REGISTER = "/api/auth/register";
     public static final String REFRESH_TOKEN = "/api/auth/refreshToken";
+    public static final String FILE_UPLOAD = "/api/auth/upload-file";
+    public static final String BYTE_FILE_UPLOAD = "/api/auth/byte-upload-file";
     public static final String ADMIN = "/api/admin/**";
     public static final String USER = "/api/user/**";
     public static final String[] SWAGGER_PATHS = {
@@ -70,6 +72,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeHttpRequests(request ->
+
                         request.antMatchers(AUTHENTICATE, REGISTER, REFRESH_TOKEN).permitAll()
                                 .antMatchers(SWAGGER_PATHS).permitAll()
                                 .antMatchers(ADMIN).hasAuthority(Role.ADMIN.name())

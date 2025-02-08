@@ -21,7 +21,7 @@ import java.util.function.Function;
 
 @Component
 public class JwtServiceImpl implements IJwtService {
-    @Value("${jwt.secretKey}")
+    @Value("${jwt.secretKey}") //vm options
     private String secretKey;
 
     @Value("${jwt.expirationTime}")
@@ -94,8 +94,9 @@ public class JwtServiceImpl implements IJwtService {
 
     @Override
     public AccessToken findByAccessToken(String token) {
-        return null;
+        return accessTokenRepository.findByAccessToken(token).orElse(null);
     }
+
     @Override
     public AccessToken saveAccessToken(AccessToken accessToken) {
         return accessTokenRepository.save(accessToken);

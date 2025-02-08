@@ -80,9 +80,9 @@ public class AuthServiceImpl implements IAuthService {
             String accessToken = jwtService.saveAccessToken(accessTokenObj).getAccessToken();
 
             RefreshToken refreshToken = createRefreshToken(optionalUser.get());
-            refreshTokenRepository.save(createRefreshToken(optionalUser.get()));
+            RefreshToken savedRefreshToken = refreshTokenRepository.save(refreshToken);
 
-            return new AuthResponse(accessToken,refreshToken.getRefreshToken());
+            return new AuthResponse(accessToken,savedRefreshToken.getRefreshToken());
 
         }catch (Exception e){
             throw new BaseException(new ErrorMessage(MessageType.USERNAME_OR_PASSWORD_INVALID, e.getMessage()));

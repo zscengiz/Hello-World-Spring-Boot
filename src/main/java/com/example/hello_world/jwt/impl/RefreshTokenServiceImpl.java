@@ -29,7 +29,7 @@ public class RefreshTokenServiceImpl implements IRefreshTokenService {
     }
     private RefreshToken createRefreshToken(User user) {
         RefreshToken refreshToken = new RefreshToken();
-        refreshToken.setRefreshToken(UUID.randomUUID().toString());
+        refreshToken.setRefreshToken(UUID.randomUUID().toString()); // düzelt
         refreshToken.setExpireDate(new Date(System.currentTimeMillis() + 1000*60*60*4));
         refreshToken.setUser(user);
         return refreshToken;
@@ -39,16 +39,16 @@ public class RefreshTokenServiceImpl implements IRefreshTokenService {
     @Override
     public AuthResponse refreshToken(RefreshTokenRequest request) {
         Optional<RefreshToken> optional = refreshTokenRepository.findByRefreshToken(request.getRefreshToken());
-        if (optional.isPresent()) {
+        if (!optional.isPresent()) {
             System.out.println("Refresh token not valid: " + request.getRefreshToken());
         }
         RefreshToken refreshToken = optional.get();
-        if(!isRefreshTokenExpired(refreshToken.getExpireDate())){
+        if(isRefreshTokenExpired(refreshToken.getExpireDate())){
             String accessToken = jwtService.generateToken(refreshToken.getUser());
             return new AuthResponse(accessToken, refreshToken.getRefreshToken());
         }
         String accessToken = jwtService.generateToken(refreshToken.getUser());
-        RefreshToken newRefreshToken = createRefreshToken(refreshToken.getUser());
+//        RefreshToken newRefreshToken = createRefreshToken(refreshToken.getUser());
 
         RefreshToken savedRefreshToken = refreshTokenRepository.save(createRefreshToken(refreshToken.getUser()));
 
